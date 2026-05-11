@@ -268,23 +268,23 @@ footer{background:var(--carbon);border-top:1px solid rgba(201,185,154,0.1);paddi
             <div class="booking-brand">Aura Beauty Studio <span style="font-size:10px;font-style:normal;font-family:var(--sans);color:rgba(201,185,154,0.45);letter-spacing:0.2em;">RESERVAS</span></div>
           </div>
           <div class="booking-steps">
-            <div class="bstep done" id="st0"><div class="bstep-n">✓</div></div>
+            <div class="bstep active" id="st0"><div class="bstep-n">1</div><span>Centro</span></div>
             <div class="bstep-line"></div>
-            <div class="bstep active" id="st1"><div class="bstep-n">2</div><span>Servicio</span></div>
+            <div class="bstep" id="st1"><div class="bstep-n">2</div><span>Servicio</span></div>
             <div class="bstep-line"></div>
             <div class="bstep" id="st2"><div class="bstep-n">3</div><span>Fecha</span></div>
             <div class="bstep-line"></div>
             <div class="bstep" id="st3"><div class="bstep-n">4</div><span>Confirmar</span></div>
           </div>
           <div class="booking-body">
-            <div class="screen" id="s1">
+            <div class="screen active" id="s1">
               <div class="blbl">Selecciona tu centro</div>
               <div class="center-grid">
                 <div class="ccard sel" onclick="selC(this)"><div class="ccard-name">Barrio de Salamanca</div><div class="ccard-sub">Madrid centro</div></div>
                 <div class="ccard" onclick="selC(this)"><div class="ccard-name">Las Rozas Village</div><div class="ccard-sub">Madrid norte</div></div>
               </div>
             </div>
-            <div class="screen active" id="s2">
+            <div class="screen" id="s2">
               <div class="blbl">Elige tu servicio</div>
               <div class="svc-cat">Manicura</div>
               <div class="svc-row" onclick="selS(this)"><div><div class="svc-name">Manicura Spa con Esmalte semipermanente</div><div class="svc-dur">45 min</div></div><div style="display:flex;align-items:center;gap:6px;"><div class="svc-price">38 €</div><div class="tick">✓</div></div></div>
@@ -312,9 +312,9 @@ footer{background:var(--carbon);border-top:1px solid rgba(201,185,154,0.1);paddi
               </div>
               <div class="slots-lbl">Horario disponible · martes 9 junio</div>
               <div class="slots">
-                <div class="sl busy">10:00</div><div class="sl busy">10:15</div><div class="sl">10:30</div><div class="sl">10:45</div><div class="sl">11:00</div>
-                <div class="sl">11:15</div><div class="sl sel">11:30</div><div class="sl">11:45</div><div class="sl busy">12:00</div><div class="sl busy">12:15</div>
-                <div class="sl">12:30</div><div class="sl">12:45</div><div class="sl">13:00</div><div class="sl busy">13:15</div><div class="sl">13:30</div>
+                <div class="sl busy">10:00</div><div class="sl busy">10:15</div><div class="sl" onclick="selSlot(this)">10:30</div><div class="sl" onclick="selSlot(this)">10:45</div><div class="sl" onclick="selSlot(this)">11:00</div>
+                <div class="sl" onclick="selSlot(this)">11:15</div><div class="sl sel" onclick="selSlot(this)">11:30</div><div class="sl" onclick="selSlot(this)">11:45</div><div class="sl busy">12:00</div><div class="sl busy">12:15</div>
+                <div class="sl" onclick="selSlot(this)">12:30</div><div class="sl" onclick="selSlot(this)">12:45</div><div class="sl" onclick="selSlot(this)">13:00</div><div class="sl busy">13:15</div><div class="sl" onclick="selSlot(this)">13:30</div>
               </div>
             </div>
             <div class="screen" id="s4">
@@ -323,10 +323,11 @@ footer{background:var(--carbon);border-top:1px solid rgba(201,185,154,0.1);paddi
               <div class="f-group"><label class="f-lbl">Teléfono</label><input class="f-in" type="tel" placeholder="+34 600 000 000"></div>
               <div class="f-group"><label class="f-lbl">Email</label><input class="f-in" type="email" placeholder="tu@email.com"></div>
               <div class="sum">
-                <div class="sum-row"><span>Nail Art</span><span>12 €</span></div>
-                <div class="sum-row"><span>Profesional</span><span>Sin preferencia</span></div>
-                <div class="sum-row"><span>Fecha y hora</span><span>Mar 9 jun · 11:30</span></div>
-                <div class="sum-row total"><span>Total</span><span>12 €</span></div>
+                <div class="sum-row"><span>Centro</span><span id="sum-center">Barrio de Salamanca</span></div>
+                <div class="sum-row"><span>Servicio</span><span id="sum-services">Nail Art</span></div>
+                <div class="sum-row"><span>Profesional</span><span id="sum-assistant">Sin preferencia</span></div>
+                <div class="sum-row"><span>Fecha y hora</span><span id="sum-datetime">Mar 9 jun · 11:30</span></div>
+                <div class="sum-row total"><span>Total</span><span id="sum-total">12 €</span></div>
               </div>
               <button class="btn-book" onclick="show(5)">Confirmar reserva</button>
               <button class="btn-back-sm" onclick="show(3)">← Volver y modificar</button>
@@ -337,9 +338,9 @@ footer{background:var(--carbon);border-top:1px solid rgba(201,185,154,0.1);paddi
                 <div class="ok-title">Reserva confirmada</div>
                 <div class="ok-sub">Recibirás un email de confirmación</div>
                 <div class="sum">
-                  <div class="sum-row"><span>Centro</span><span>Barrio de Salamanca</span></div>
-                  <div class="sum-row"><span>Servicio</span><span>Nail Art</span></div>
-                  <div class="sum-row total"><span>Mar 9 jun · 11:30</span><span>12 €</span></div>
+                  <div class="sum-row"><span>Centro</span><span id="ok-center">Barrio de Salamanca</span></div>
+                  <div class="sum-row"><span>Servicio</span><span id="ok-service">Nail Art</span></div>
+                  <div class="sum-row total"><span id="ok-datetime">Mar 9 jun · 11:30</span><span id="sum-total-ok">12 €</span></div>
                 </div>
                 <button class="btn-book" onclick="show(2)" style="margin-top:4px;">Nueva reserva</button>
               </div>
@@ -469,11 +470,77 @@ function show(n) {
 }
 function next(){if(cur<4) show(cur+1); else if(cur===4) show(5);}
 function prev(){if(cur>1) show(cur-1);}
-function selC(el){document.querySelectorAll('.ccard').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');}
-function selS(el){el.classList.toggle('sel');el.querySelector('.tick').classList.toggle('on');}
-function selA(el){document.querySelectorAll('.asst').forEach(a=>a.classList.remove('sel'));el.classList.add('sel');}
-function selD(el){document.querySelectorAll('.dd').forEach(d=>d.classList.remove('sel'));el.classList.add('sel');}
-show(2);
+// State
+const state = { center:'Barrio de Salamanca', services:['Nail Art'], assistant:'Sin preferencia', date:'Mar 9 jun', slot:'11:30' };
+
+const PRICES = {
+  'Manicura Spa con Esmalte semipermanente': 38,
+  'Nail Art': 12,
+  'Manicura con Builder Gel': 42,
+  'Pedicura Spa con Esmalte normal': 44,
+  'Pedicura con Presoterapia Ocular': 52,
+};
+
+function selC(el) {
+  document.querySelectorAll('.ccard').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  state.center = el.querySelector('.ccard-name').textContent;
+}
+
+function selS(el) {
+  el.classList.toggle('sel');
+  el.querySelector('.tick').classList.toggle('on');
+  const name = el.querySelector('.svc-name').textContent;
+  if (el.classList.contains('sel')) {
+    if (!state.services.includes(name)) state.services.push(name);
+  } else {
+    state.services = state.services.filter(s => s !== name);
+  }
+}
+
+function selA(el) {
+  document.querySelectorAll('.asst').forEach(a => a.classList.remove('sel'));
+  el.classList.add('sel');
+  state.assistant = el.querySelector('.asst-name').textContent;
+}
+
+function selD(el) {
+  document.querySelectorAll('.dd').forEach(d => d.classList.remove('sel'));
+  el.classList.add('sel');
+  const day = el.textContent;
+  state.date = `Mar ${day} jun`;
+  document.querySelector('.slots-lbl').textContent = `Horario disponible · ${state.date}`;
+  // Reset slot selection
+  document.querySelectorAll('.sl').forEach(s => { if (!s.classList.contains('busy')) s.classList.remove('sel'); });
+  state.slot = null;
+}
+
+function selSlot(el) {
+  if (el.classList.contains('busy')) return;
+  document.querySelectorAll('.sl').forEach(s => s.classList.remove('sel'));
+  el.classList.add('sel');
+  state.slot = el.textContent;
+}
+
+function updateSummary() {
+  const svcs = state.services.length > 0 ? state.services : ['—'];
+  const total = state.services.reduce((sum, s) => sum + (PRICES[s] || 0), 0);
+  document.getElementById('sum-center').textContent = state.center;
+  document.getElementById('sum-services').textContent = svcs.join(', ');
+  document.getElementById('sum-assistant').textContent = state.assistant;
+  document.getElementById('sum-datetime').textContent = state.date + (state.slot ? ' · ' + state.slot : '');
+  document.getElementById('sum-total').textContent = total > 0 ? total + ' €' : '—';
+  document.getElementById('ok-center').textContent = state.center;
+  document.getElementById('ok-service').textContent = svcs.join(', ');
+  document.getElementById('ok-datetime').textContent = state.date + (state.slot ? ' · ' + state.slot : '');
+}
+
+function next() {
+  if (cur < 4) { if (cur === 3) updateSummary(); show(cur + 1); }
+  else if (cur === 4) show(5);
+}
+function prev() { if (cur > 1) show(cur - 1); }
+show(1);
 </script>
 </body>
 </html>
